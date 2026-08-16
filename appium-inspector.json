@@ -1,0 +1,13 @@
+{
+  "platformName": "Android",
+  "appium:automationName": "UiAutomator2",
+  "appium:deviceName": "emulator-5554",
+  "appium:app": "C:\\Users\\Chris\\Documents\\appium-citberbank\\app\\ciberbank-debug.apk",
+  "appium:appPackage": "edu.pe.cibertec.ciberbank",
+  "appium:appActivity": ".ui.SplashActivity",
+  "appium:autoGrantPermissions": true,
+  "appium:noReset": false,
+  "appium:newCommandTimeout": 300,
+  "appium:uiautomator2ServerInstallTimeout": 120000,
+  "appium:adbExecTimeout": 60000
+}
