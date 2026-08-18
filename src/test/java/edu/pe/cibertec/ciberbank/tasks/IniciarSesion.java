@@ -6,7 +6,6 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 
-/** Completa el formulario de login y pulsa Ingresar. */
 public class IniciarSesion implements Task {
 
     private final String usuario;
