@@ -22,4 +22,13 @@ public class DashboardScreen {
 
     public static final Target BOTON_MENU =
             Target.the("botón del menú lateral").located(By.id(PAQUETE + "btn_menu"));
+
+    public static final Target BOTON_TRANSFERIR =
+            Target.the("acceso rápido Transferir").located(By.id(PAQUETE + "btn_transferir"));
+
+    public static final Target BOTON_MOVIMIENTOS =
+            Target.the("acceso rápido Movimientos").located(By.id(PAQUETE + "btn_movimientos"));
+
+    public static final Target OPCION_PERFIL =
+            Target.the("opción Perfil del menú").located(By.id(PAQUETE + "btn_nav_perfil"));
 }

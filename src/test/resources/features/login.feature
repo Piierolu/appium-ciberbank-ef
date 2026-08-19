@@ -19,12 +19,12 @@ Característica: Inicio de sesión en CiberBank
     Entonces debería ver el mensaje de error "Credenciales inválidas"
 
   @login
-  Esquema del escenario: Ingresos rechazados
+  Esquema del escenario: Ingresos rechazados por estado o datos obligatorios
     Dado que Jaime está en la pantalla de login
     Cuando ingresa el usuario "<usuario>" y la contraseña "<clave>"
     Entonces debería ver el mensaje de error "<mensaje>"
 
     Ejemplos:
       | usuario   | clave       | mensaje                                |
-      | jaime     | otraClave   | Credenciales inválidas                 |
       | bloqueado | Cibertec123 | Usuario bloqueado. Contacte a soporte  |
+      |           |             | El usuario es obligatorio              |

@@ -13,20 +13,20 @@ import io.cucumber.java.es.Entonces;
 import io.cucumber.java.es.Y;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.ensure.Ensure;
+import net.serenitybdd.screenplay.targets.Target;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
-import static org.hamcrest.Matchers.is;
 
 public class LoginStepDefinitions {
 
-    @Before
+    @Before("@login or @servicios")
     public void preparaEscenario() {
         OnStage.setTheStage(new OnlineCast());
     }
 
-    @After
+    @After("@login or @servicios")
     public void cierraEscenario() {
         OnStage.drawTheCurtain();
     }
@@ -47,22 +47,26 @@ public class LoginStepDefinitions {
 
     @Entonces("debería ver el saludo {string}")
     public void deberia_ver_el_saludo(String saludo) {
-        theActorInTheSpotlight().should(
-                seeThat("el saludo del dashboard", TextoDe.el(DashboardScreen.SALUDO), is(saludo))
+        theActorInTheSpotlight().attemptsTo(
+                Ensure.that(TextoDe.el(DashboardScreen.SALUDO)).isEqualTo(saludo)
         );
     }
 
     @Y("el saldo mostrado debería ser {string}")
     public void el_saldo_mostrado_deberia_ser(String saldo) {
-        theActorInTheSpotlight().should(
-                seeThat("el saldo de la cuenta principal", TextoDe.el(DashboardScreen.SALDO_PRINCIPAL), is(saldo))
+        theActorInTheSpotlight().attemptsTo(
+                Ensure.that(TextoDe.el(DashboardScreen.SALDO_PRINCIPAL)).isEqualTo(saldo)
         );
     }
 
-    @Entonces("debería ver el mensaje de error {string}")
+    @Entonces("^debería ver el mensaje de error \"(Credenciales inválidas|Usuario bloqueado\\. Contacte a soporte|El usuario es obligatorio)\"$")
     public void deberia_ver_el_mensaje_de_error(String mensaje) {
-        theActorInTheSpotlight().should(
-                seeThat("el mensaje de error del login", TextoDe.el(LoginScreen.ERROR_LOGIN), is(mensaje))
+        Target mensajeMostrado = mensaje.equals("El usuario es obligatorio")
+                ? LoginScreen.ERROR_USUARIO
+                : LoginScreen.ERROR_LOGIN;
+
+        theActorInTheSpotlight().attemptsTo(
+                Ensure.that(TextoDe.el(mensajeMostrado)).isEqualTo(mensaje)
         );
     }
 }
